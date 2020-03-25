@@ -1,7 +1,7 @@
 # Sage 100 API (for WordPress)
 A WordPress library for working with Sage 100.
 
-## Documentation and Links for Sage and Sdata
+### Useful Links
 
 * [SData-2.0 Docs](http://sage.github.io/SData-2.0/)
 * [SData-2.0 Repo](https://github.com/Sage/SData-2.0)
