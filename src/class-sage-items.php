@@ -75,7 +75,7 @@ class Sage_Items extends SageAPI {
 				</sdata:payload>
 			</entry>';
 
-		$response = $this->build_request( 'AR_Customer', $args, 'POST' )->fetch( array( 'format' => $format ) );
+		$response = $this->build_request( 'CI_Item', $args, 'POST' )->fetch( array( 'format' => $format ) );
 
 		return $response;
 	}
