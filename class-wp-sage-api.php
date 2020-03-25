@@ -797,7 +797,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Customers.
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_customers( $args = array(), $format = '' ) {
@@ -807,6 +808,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Customer.
+		 *
 		 * @param  [type] $customer_id [description]
 		 * @param  array  $args        [description]
 		 * @return [type]              [description]
@@ -818,6 +820,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 *  Delete Customer.
+		 *
 		 * @param  [type] $customer_id [description]
 		 * @param  array  $args        [description]
 		 * @return [type]              [description]
@@ -829,7 +832,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Create Customer.
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function create_customer( $args = array(), $format = '' ) {
@@ -866,7 +870,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Customer Contacts.
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_customer_contacts( $args = array(), $format = '' ) {
@@ -876,7 +881,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get All Credit Cards.
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_customer_creditcards( $args = array(), $format = '' ) {
@@ -886,6 +892,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Customer Contact.
+		 *
 		 * @param  [type] $customer_id         [description]
 		 * @param  [type] $customer_contact_id [description]
 		 * @param  array  $args                [description]
@@ -898,6 +905,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Delete Customer Contact.
+		 *
 		 * @param  [type] $customer_id         [description]
 		 * @param  [type] $customer_contact_id [description]
 		 * @param  array  $args                [description]
@@ -910,6 +918,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Credit Card.
+		 *
 		 * @param  [type] $customer_id [description]
 		 * @param  array  $args        [description]
 		 * @return [type]              [description]
@@ -922,7 +931,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Sales Order History Headers.
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_sales_order_history_headers( $args = array(), $format = '' ) {
@@ -932,6 +942,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Sales Order History Header by ID.
+		 *
 		 * @param  [type] $sales_order_id [description]
 		 * @param  array  $args           [description]
 		 * @return [type]                 [description]
@@ -943,6 +954,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [delete_sales_order_history description]
+		 *
 		 * @param  [type] $sales_order_id [description]
 		 * @param  array  $args           [description]
 		 * @return [type]                 [description]
@@ -956,7 +968,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_headers description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_headers( $args = array(), $format = '' ) {
@@ -966,7 +979,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_defaults description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_defaults( $args = array(), $format = '' ) {
@@ -976,7 +990,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_history_links description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_history_links( $args = array(), $format = '' ) {
@@ -986,7 +1001,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_memos description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_memos( $args = array(), $format = '' ) {
@@ -996,7 +1012,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_payments description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_payments( $args = array(), $format = '' ) {
@@ -1006,7 +1023,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_trackings description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_trackings( $args = array(), $format = '' ) {
@@ -1016,7 +1034,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tier_distributions description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_tier_distributions( $args = array(), $format = '' ) {
@@ -1026,7 +1045,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tax_summaries description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_tax_summaries( $args = array(), $format = '' ) {
@@ -1036,7 +1056,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tax_details description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_tax_details( $args = array(), $format = '' ) {
@@ -1046,6 +1067,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_header description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1058,6 +1080,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_detail description]
+		 *
 		 * @param  [type] $invoice_id  [description]
 		 * @param  [type] $line_number [description]
 		 * @param  array  $args        [description]
@@ -1070,6 +1093,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_details description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1081,6 +1105,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_payment description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1092,6 +1117,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tier_distribution description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1103,6 +1129,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tax_summary description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1114,6 +1141,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tax_detail description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1125,6 +1153,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_tracking description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1136,6 +1165,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_history_link description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1149,7 +1179,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_history_headers description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_history_headers( $args = array(), $format = '' ) {
@@ -1160,7 +1191,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * Get Invoice History Details.
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_invoice_history_details( $args = array(), $format = '' ) {
@@ -1170,6 +1202,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_single_invoice_history_detail description]
+		 *
 		 * @param  [type] $invoice_id  [description]
 		 * @param  [type] $line_number [description]
 		 * @param  array  $args        [description]
@@ -1182,6 +1215,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_invoice_history_header description]
+		 *
 		 * @param  [type] $invoice_id [description]
 		 * @param  array  $args       [description]
 		 * @return [type]             [description]
@@ -1195,7 +1229,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_items description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function get_items( $args = array(), $format = '' ) {
@@ -1206,6 +1241,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [get_item description]
+		 *
 		 * @param  [type] $item_id [description]
 		 * @param  array  $args    [description]
 		 * @return [type]          [description]
@@ -1217,7 +1253,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 		/**
 		 * [create_item description]
-		 * @param  array  $args [description]
+		 *
+		 * @param  array $args [description]
 		 * @return [type]       [description]
 		 */
 		public function create_item( $args = array(), $format = '' ) {
