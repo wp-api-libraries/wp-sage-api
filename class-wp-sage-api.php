@@ -15,10 +15,14 @@
 * GitHub Plugin URI: https://github.com/wp-api-libraries/wp-sage-api
 * GitHub Branch: master
 */
+
 /* Exit if accessed directly. */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
+
+// Require Autoloader.
+// require_once trailingslashit( dirname( __FILE__ ) ) . 'autoloader.php';
+
+require_once 'src/class-sage-items.php';
 
 /* Check if class exists. */
 if ( ! class_exists( 'SageAPI' ) ) {
@@ -33,51 +37,51 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $route = '';
+		public $route = '';
 
 		/**
 		 * Base API URL.
 		 *
 		 * @var string
 		 */
-		private static $base_uri;
+		public static $base_uri;
 
 		/**
 		 * API Username.
 		 *
 		 * @var string
 		 */
-		private static $username;
+		public static $username;
 
 		/**
 		 * API Password.
 		 *
 		 * @var string
 		 */
-		private static $password;
+		public static $password;
 
 		/**
 		 * Company Code.
 		 *
 		 * @var string
 		 */
-		private static $company_code;
+		public static $company_code;
 
 		/**
 		 * Links for pagination
 		 *
 		 * @var string
 		 */
-		public $links;
+		public $sdata_links;
 
 		/**
 		 * Initialize the API object
 		 *
 		 * @since 0.1
-		 * @param string $endpoint the endpoint URL
-		 * @param string $username connection username
-		 * @param string $password connection password
-		 * @param string $company_code identifies the company
+		 * @param string $endpoint the endpoint URL.
+		 * @param string $username connection username.
+		 * @param string $password connection password.
+		 * @param string $company_code identifies the company.
 		 */
 		public function __construct( $base_uri, $username, $password, $company_code ) {
 
@@ -179,16 +183,16 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * Set request headers.
 		 */
-		protected function set_headers() {
-			// Set request headers.
+		public function set_headers() {
 			$this->args['headers'] = array(
 				'Authorization' => 'Basic ' . base64_encode( static::$username . ':' . static::$password ),
 			);
 		}
+
 		/**
 		 * Clear query data.
 		 */
-		protected function clear() {
+		public function clear() {
 			$this->args = array();
 		}
 
@@ -511,7 +515,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * @param  int $code HTTP status code.
 		 * @return boolean       True if status is within valid range.
 		 */
-		protected function is_status_ok( $code ) {
+		public function is_status_ok( $code ) {
 			return ( 200 <= $code && 300 > $code );
 		}
 
@@ -796,90 +800,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		// ############################ ENDPOINTS. #############################
 
 		/**
-		 * Get Customers.
-		 *
-		 * @param  array $args [description]
-		 * @return [type]       [description]
-		 */
-		public function get_customers( $args = array(), $format = '' ) {
-			$response = $this->build_request( 'AR_Customer', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
-		 * Get Customer.
-		 *
-		 * @param  [type] $customer_id [description]
-		 * @param  array  $args        [description]
-		 * @return [type]              [description]
-		 */
-		public function get_customer( $customer_id, $args = array(), $format = '' ) {
-			$response = $this->build_request( 'AR_Customer(00;' . $customer_id . ')', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
-		 *  Delete Customer.
-		 *
-		 * @param  [type] $customer_id [description]
-		 * @param  array  $args        [description]
-		 * @return [type]              [description]
-		 */
-		public function delete_customer( $customer_id, $args = array(), $format = '' ) {
-			$response = $this->build_request( 'AR_Customer(00;' . $customer_id . ')', $args, 'DELETE' )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
-		 * Create Customer.
-		 *
-		 * @param  array $args [description]
-		 * @return [type]       [description]
-		 */
-		public function create_customer( $args = array(), $format = '' ) {
-
-			$customer_no             = '00';
-			$salesperson_division_no = '00';
-			$customer_name           = $args['customer_name'] ?? '';
-			$salesperson_no          = $args['salesperson_no'] ?? 'NG';
-			$buyer_group             = $args['buyer_group'] ?? '';
-
-			$data = '
-			<entry xmlns:sdata="http://schemas.sage.com/sdata/2008/1"
-		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		       xmlns="http://schemas.sage.com/sdata/http/2008/1">
-		  <id/>
-		  <title/>
-		  <content/>
-			<sdata:payload>
-		    <AR_Customer sdata:uri="https://' . sage_url() . '/sdata/MasApp/MasContract/' . sage_company_code() . '/AR_Customer" xmlns="">
-					<ARDivisionNo>00</ARDivisionNo>
-					<CustomerNo>' . $customer_no . '</CustomerNo>
-		      <CustomerName>' . $customer_name . '</CustomerName>
-					<SalespersonDivisionNo>' . $salesperson_division_no . '</SalespersonDivisionNo>
-					<SalespersonNo>' . $salesperson_no . '</SalespersonNo>
-					<UDF_BUYER_GROUP>' . $buyer_group . '</UDF_BUYER_GROUP>
-		    </AR_Customer>
-				</sdata:payload>
-			</entry>';
-
-			$response = $this->build_request( 'AR_Customer', $args, 'POST' )->fetch( array( 'format' => $format ) );
-
-			return $response;
-		}
-
-		/**
-		 * Get Customer Contacts.
-		 *
-		 * @param  array $args [description]
-		 * @return [type]       [description]
-		 */
-		public function get_customer_contacts( $args = array(), $format = '' ) {
-			$response = $this->build_request( 'AR_CustomerContact', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
 		 * Get All Credit Cards.
 		 *
 		 * @param  array $args [description]
@@ -887,32 +807,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 */
 		public function get_customer_creditcards( $args = array(), $format = '' ) {
 			$response = $this->build_request( 'AR_CustomerCreditCard', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
-		 * Get Customer Contact.
-		 *
-		 * @param  [type] $customer_id         [description]
-		 * @param  [type] $customer_contact_id [description]
-		 * @param  array  $args                [description]
-		 * @return [type]                      [description]
-		 */
-		public function get_customer_contact( $customer_id, $customer_contact_id, $args = array(), $format = '' ) {
-			$response = $this->build_request( 'AR_CustomerContact(00;' . $customer_id . ';' . $customer_contact_id . ')', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
-		 * Delete Customer Contact.
-		 *
-		 * @param  [type] $customer_id         [description]
-		 * @param  [type] $customer_contact_id [description]
-		 * @param  array  $args                [description]
-		 * @return [type]                      [description]
-		 */
-		public function delete_customer_contact( $customer_id, $customer_contact_id, $args = array(), $format = '' ) {
-			$response = $this->build_request( 'AR_CustomerContact(00;' . $customer_id . ';' . $customer_contact_id . ')', $args, 'DELETE' )->fetch( array( 'format' => $format ) );
 			return $response;
 		}
 
@@ -1224,70 +1118,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			$response = $this->build_request( 'AR_InvoiceHistoryHeader(' . $invoice_id . ')', $args )->fetch( array( 'format' => $format ) );
 			return $response;
 		}
-
-		/* ITEMS. */
-
-		/**
-		 * [get_items description]
-		 *
-		 * @param  array $args [description]
-		 * @return [type]       [description]
-		 */
-		public function get_items( $args = array(), $format = '' ) {
-			$response = $this->build_request( 'CI_Item', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-
-		}
-
-		/**
-		 * [get_item description]
-		 *
-		 * @param  [type] $item_id [description]
-		 * @param  array  $args    [description]
-		 * @return [type]          [description]
-		 */
-		public function get_item( $item_id, $args = array(), $format = '' ) {
-			$response = $this->build_request( 'CI_Item(' . $item_id . ')', $args )->fetch( array( 'format' => $format ) );
-			return $response;
-		}
-
-		/**
-		 * [create_item description]
-		 *
-		 * @param  array $args [description]
-		 * @return [type]       [description]
-		 */
-		public function create_item( $args = array(), $format = '' ) {
-
-			$item_code          = $args['item_code'] ?? '';
-			$standard_unit_cost = $args['v'] ?? '';
-			$salesperson_no     = $args['salesperson_no'] ?? 'NG';
-			$buyer_group        = $args['buyer_group'] ?? '';
-
-			$data = '
-			<entry xmlns:sdata="http://schemas.sage.com/sdata/2008/1"
-		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		       xmlns="http://schemas.sage.com/sdata/http/2008/1">
-		  <id/>
-		  <title/>
-		  <content/>
-			<sdata:payload>
-		      <CI_Item sdata:uri="https://' . sage_url() . '/sdata/MasApp/MasContract/' . sage_company_code() . '/CI_Item" xmlns="">
-					<ItemCode>' . $item_code . '</ItemCode>
-		            <ItemType>1</ItemType>
-		            <ProductLine>ACCE</ProductLine>
-		            <StandardUnitCost>' . $standard_unit_cost . '</StandardUnitCost>
-		            <ImageFile>TriFold_web_800x800.jpg</ImageFile>
-		            <SuggestedRetailPrice>10.0000</SuggestedRetailPrice>
-		    </CI_Item>
-				</sdata:payload>
-			</entry>';
-
-			$response = $this->build_request( 'AR_Customer', $args, 'POST' )->fetch( array( 'format' => $format ) );
-
-			return $response;
-		}
-
 
 	}
 }
