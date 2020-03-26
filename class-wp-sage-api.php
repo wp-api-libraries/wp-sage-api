@@ -199,7 +199,12 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			$this->args = array();
 		}
 
-		// Get SData Links.
+		/**
+		 * Get SData Links.
+		 *
+		 * @param  array $parsed_xml Parsed XML.
+		 * @return array SData Links.
+		 */
 		public function get_sdata_links( array $parsed_xml ) {
 
 			if ( ! empty( $parsed_xml ) && ! is_wp_error( $parsed_xml ) ) {
