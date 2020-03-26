@@ -685,7 +685,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		public function get_entry_id( $entry ) {
 			if ( ! empty( $entry ) ) {
 				$entry_id = $entry['id'] ?? '';
-				return $entry_id ?? '';
+				return esc_url_raw( $entry_id ) ?? '';
 			}
 		}
 
