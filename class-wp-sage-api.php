@@ -97,7 +97,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			}
 		}
 
-		 /*
+		/**
 		 * Prepares API request.
 		 *
 		 * @param  string $route   API route to make the call to.
