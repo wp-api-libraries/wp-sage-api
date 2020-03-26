@@ -145,7 +145,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 				if ( ! is_wp_error( $body ) && ! empty( $body ) ) {
 
-					if ( 'json' === $format || empty( $format ) ) {
+					if ( 'xml' !== $format || empty( $format ) ) {
 
 						$parsed_xml = $this->xmlstr_to_array( $body ) ?? array();
 
@@ -162,9 +162,16 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 						$this->clear();
 
+						if ( 'json' === $format ) {
+								return wp_json_encode( $results );
+						} else {
+							return $results;
+						}
+
 						return $results;
 
 					} else {
+
 						return $body;
 					}
 				} else {
