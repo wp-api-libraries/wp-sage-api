@@ -94,7 +94,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 *
 		 * @param  string $route   API route to make the call to.
 		 * @param  array  $args    Arguments to pass into the API call.
-		 * @param  array  $method  HTTP Method to use for request.
+		 * @param  string $method  HTTP Method to use for request.
 		 * @return self            Returns an instance of itself so it can be chained to the fetch method.
 		 */
 		protected function build_request( string $route, array $args = array(), string $method = 'GET' ) {
@@ -114,11 +114,11 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 			return $this;
 		}
+
 		/**
 		 * Fetch the request from the API.
 		 *
-		 * @access private
-		 * @return array|WP_Error Request results or WP_Error on request failure.
+		 * @param  array $args Arguments.
 		 */
 		protected function fetch( $args = array() ) {
 
@@ -137,7 +137,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 			// Return WP_Error if request is not successful.
 			if ( ! $this->is_status_ok( $code ) ) {
-				return new WP_Error( 'response-error', sprintf( __( 'Status: %d', 'wp-sage-api' ), $code ) );
+				return new WP_Error( 'response-error', sprintf( 'Status: %d', $code ) );
 			} else {
 
 				// Get Response Body.
@@ -180,7 +180,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 */
 		public function set_headers() {
 			$this->args['headers'] = array(
-				'Authorization' => 'Basic ' . base64_encode( static::$username . ':' . static::$password ),
+				'Authorization' => 'Basic ' . base64_encode( static::$username . ':' . static::$password ), // @codingStandardsIgnoreLine
 			);
 		}
 
@@ -520,9 +520,9 @@ if ( ! class_exists( 'SageAPI' ) ) {
 				assert( \class_exists( '\DOMDocument' ) );
 				$doc = new \DOMDocument();
 				$doc->loadXML( $xml );
-				$root            = $doc->documentElement;
+				$root            = $doc->documentElement; // @codingStandardsIgnoreLine
 				$output          = (array) $this->domnode_to_array( $root );
-				$output['@root'] = $root->tagName;
+				$output['@root'] = $root->tagName; // @codingStandardsIgnoreLine
 				return $output ?? array();
 			} else {
 				return array();
