@@ -84,18 +84,17 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			static::$username     = $username;
 			static::$password     = $password;
 			static::$company_code = $company_code;
-			static::$base_uri = $base_uri . '/' . $company_code . '/';
+			static::$base_uri     = $base_uri . '/' . $company_code . '/';
 
 			// spl_autoload_register( array( $this, 'autoload' ) );
 			// include_once( 'src/class-sage-items.php');
-
 		}
 
 		public function autoload( $class_name ) {
-		  if ( false !== strpos( $class_name, 'Sage' ) ) {
-		   $file = 'src/class-' . strtolower( str_replace( '_', '-', $class_name ) ) . '.php';
-		    require_once $file;
-		  }
+			if ( false !== strpos( $class_name, 'Sage' ) ) {
+				$file = 'src/class-' . strtolower( str_replace( '_', '-', $class_name ) ) . '.php';
+				require_once $file;
+			}
 		}
 
 		 /*
