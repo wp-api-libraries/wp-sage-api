@@ -74,7 +74,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Initialize the API object
 		 *
 		 * @since 0.1
-		 * @param string $endpoint the endpoint URL.
+		 * @param string $base_uri The endpoint URL.
 		 * @param string $username connection username.
 		 * @param string $password connection password.
 		 * @param string $company_code identifies the company.
@@ -509,12 +509,12 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			return ( 200 <= $code && 300 > $code );
 		}
 
-		 /**
-		  * Convert xml string to php array
-		  *
-		  * @param  string $xml XML.
-		  * @return array  PHP Array from XML.
-		  */
+		/**
+		 * Convert xml string to php array
+		 *
+		 * @param  string $xml XML.
+		 * @return array  PHP Array from XML.
+		 */
 		public function xmlstr_to_array( string $xml ): array {
 			if ( $xml ) {
 				assert( \class_exists( '\DOMDocument' ) );
