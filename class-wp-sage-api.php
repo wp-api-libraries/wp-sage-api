@@ -86,16 +86,8 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			static::$company_code = $company_code;
 			static::$base_uri     = $base_uri . '/' . $company_code . '/';
 
-			// spl_autoload_register( array( $this, 'autoload' ) );
-			// include_once( 'src/class-sage-items.php');
 		}
 
-		public function autoload( $class_name ) {
-			if ( false !== strpos( $class_name, 'Sage' ) ) {
-				$file = 'src/class-' . strtolower( str_replace( '_', '-', $class_name ) ) . '.php';
-				require_once $file;
-			}
-		}
 
 		/**
 		 * Prepares API request.
@@ -517,15 +509,12 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			return ( 200 <= $code && 300 > $code );
 		}
 
-		/**
-		 * convert xml string to php array - useful to get a serializable value
-		 *
-		 * @param string $xml
-		 * @return mixed[]
-		 *
-		 * @author Adrien aka Gaarf & contributors
-		 * @see http://gaarf.info/2009/08/13/xml-string-to-php-array/
-		 */
+		 /**
+		  * Convert xml string to php array
+		  *
+		  * @param  string $xml XML.
+		  * @return array  PHP Array from XML.
+		  */
 		public function xmlstr_to_array( string $xml ): array {
 			if ( $xml ) {
 				assert( \class_exists( '\DOMDocument' ) );
@@ -539,8 +528,11 @@ if ( ! class_exists( 'SageAPI' ) ) {
 				return array();
 			}
 		}
+
 		/**
-		 * @param \DOMElement $node
+		 * Dom Element to Array.
+		 *
+		 * @param  [type] $node Dom Element Node.
 		 * @return array|string
 		 */
 		public function domnode_to_array( $node ) {
