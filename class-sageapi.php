@@ -718,7 +718,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 */
 		public function get_entry_http_status( $entry ) {
 			if ( ! empty( $entry ) ) {
-				return $entry['http:httpStatus'] ?? '';
+				return intval( $entry['http:httpStatus'] ) ?? '';
 			}
 		}
 
