@@ -21,10 +21,10 @@ class Sage_Items extends SageAPI {
 	}
 
 	/**
-	 * [get_items description]
+	 * Get Items.
 	 *
-	 * @param  array $args [description]
-	 * @return [type]       [description]
+	 * @param  array $args Arguments.
+	 * @return array API Response.
 	 */
 	public function get_items( $args = array(), $format = '' ) {
 		$response = $this->build_request( 'CI_Item', $args )->fetch( array( 'format' => $format ) );
@@ -32,11 +32,11 @@ class Sage_Items extends SageAPI {
 	}
 
 	/**
-	 * [get_item description]
+	 * Get Item.
 	 *
-	 * @param  [type] $item_id [description]
-	 * @param  array  $args    [description]
-	 * @return [type]          [description]
+	 * @param  string $item_id Item Id.
+	 * @param  array  $args Arguments.
+	 * @return array API Response.
 	 */
 	public function get_item( $item_id, $args = array(), $format = '' ) {
 		$response = $this->build_request( 'CI_Item(' . $item_id . ')', $args )->fetch( array( 'format' => $format ) );
@@ -44,10 +44,10 @@ class Sage_Items extends SageAPI {
 	}
 
 	/**
-	 * [create_item description]
+	 * Create Item.
 	 *
-	 * @param  array $args [description]
-	 * @return [type]       [description]
+	 * @param  array $args Arguments.
+	 * @return array API Response.
 	 */
 	public function create_item( $args = array(), $format = '' ) {
 
