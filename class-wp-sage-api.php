@@ -237,10 +237,10 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		}
 
 		/**
-		 * [get_has_more description]
+		 * Get Has More.
 		 *
-		 * @param  array $parsed_xml [description]
-		 * @return boolean             [description]
+		 * @param  array $parsed_xml Parsed XML.
+		 * @return boolean True or False, if more pages.
 		 */
 		public function get_has_more( array $parsed_xml ) {
 
@@ -271,7 +271,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Next Link.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_next_link( array $parsed_xml ) {
 
@@ -300,7 +299,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Next Start Index.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_next_start_index( array $parsed_xml ) {
 
@@ -329,7 +327,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Next Count.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_next_count( array $parsed_xml ) {
 
@@ -358,7 +355,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Self Link.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_self_link( array $parsed_xml ) {
 
@@ -384,7 +380,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Last Link.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_last_link( array $parsed_xml ) {
 
@@ -409,7 +404,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get First Link.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_first_link( array $parsed_xml ) {
 
@@ -444,8 +438,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * Get Previous Link.
 		 *
-		 * @param  array $parsed_xml [description]
-		 * @return [type]             [description]
+		 * @param  array $parsed_xml Parsed XML.
 		 */
 		public function get_previous_link( array $parsed_xml ) {
 
@@ -470,7 +463,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Total Results.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_total_results( array $parsed_xml ) {
 			$total_results = '';
@@ -487,7 +479,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Start Index.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_start_index( array $parsed_xml ) {
 			$start_index = '';
@@ -504,7 +495,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Items per Page.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_items_per_page( array $parsed_xml ) {
 			$items_per_page = '';
@@ -555,17 +545,17 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 */
 		public function domnode_to_array( $node ) {
 			$output = array();
-			switch ( $node->nodeType ) {
+			switch ( $node->nodeType ) { // @codingStandardsIgnoreLine
 				case 4: // XML_CDATA_SECTION_NODE.
 				case 3: // XML_TEXT_NODE.
-						$output = trim( $node->textContent );
+						$output = trim( $node->textContent ); // @codingStandardsIgnoreLine
 					break;
 				case 1: // XML_ELEMENT_NODE.
-					for ( $i = 0, $m = $node->childNodes->length; $i < $m; $i++ ) {
-						$child = $node->childNodes->item( $i );
+					for ( $i = 0, $m = $node->childNodes->length; $i < $m; $i++ ) { // @codingStandardsIgnoreLine
+						$child = $node->childNodes->item( $i ); // @codingStandardsIgnoreLine
 						$v     = $this->domnode_to_array( $child );
-						if ( isset( $child->tagName ) ) {
-							  $t = $child->tagName;
+						if ( isset( $child->tagName ) ) { // @codingStandardsIgnoreLine
+							  $t = $child->tagName; // @codingStandardsIgnoreLine
 							if ( ! isset( $output[ $t ] ) ) {
 								$output[ $t ] = array();
 							}
@@ -596,14 +586,22 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			return $output;
 		}
 
-		// Get Generator.
+		/**
+		 * Get Generator.
+		 *
+		 * @param  array $parsed_xml Parsed XML.
+		 */
 		public function get_generator( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
 				return $parsed_xml['generator'] ?? '';
 			}
 		}
 
-		// Get Title.
+		/**
+		 * Get Title.
+		 *
+		 * @param  array $parsed_xml Parsed XML.
+		 */
 		public function get_title( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
 				return $parsed_xml['title'] ?? '';
@@ -613,8 +611,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_category description]
 		 *
-		 * @param  [type] $parsed_xml [description]
-		 * @return [type]             [description]
+		 * @param  array $parsed_xml Parsed XML.
 		 */
 		public function get_category( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
@@ -625,8 +622,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_author description]
 		 *
-		 * @param  [type] $parsed_xml [description]
-		 * @return [type]             [description]
+		 * @param  array $parsed_xml Parsed XML.
 		 */
 		public function get_author( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
@@ -637,8 +633,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_id description]
 		 *
-		 * @param  [type] $parsed_xml [description]
-		 * @return [type]             [description]
+		 * @param  array $parsed_xml Parsed XML.
 		 */
 		public function get_id( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
@@ -649,8 +644,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_content description]
 		 *
-		 * @param  [type] $parsed_xml [description]
-		 * @return [type]             [description]
+		 * @param  array $parsed_xml Parsed XML.
 		 */
 		public function get_content( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
@@ -661,8 +655,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_http_status description]
 		 *
-		 * @param  [type] $parsed_xml [description]
-		 * @return [type]             [description]
+		 * @param  array $parsed_xml Parsed XML.
 		 */
 		public function get_http_status( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
@@ -741,7 +734,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * [get_updated description]
 		 *
 		 * @param  [type] $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_updated( $parsed_xml ) {
 			if ( ! empty( $parsed_xml ) ) {
@@ -753,7 +745,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		 * Get Payload.
 		 *
 		 * @param  array $parsed_xml Parsed XML.
-		 * @return [type]             [description]
 		 */
 		public function get_payload( array $parsed_xml ) {
 
