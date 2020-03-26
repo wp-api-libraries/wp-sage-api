@@ -17,7 +17,7 @@ class Sage_Items extends SageAPI {
 	 * [__construct description]
 	 */
 	public function __construct() {
-		parent::__construct();
+		parent::__construct('', '', '', '');
 	}
 
 	/**

@@ -801,4 +801,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		}
 
 	}
+
+	require_once trailingslashit( dirname( __FILE__ ) ) . 'autoloader.php';
 }
