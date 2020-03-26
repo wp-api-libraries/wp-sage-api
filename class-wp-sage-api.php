@@ -153,7 +153,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 
 				if ( ! is_wp_error( $body ) && ! empty( $body ) ) {
 
-					if ( $format === 'json' || empty( $format ) ) {
+					if ( 'json' === $format || empty( $format ) ) {
 
 						$parsed_xml = $this->xmlstr_to_array( $body ) ?? array();
 
@@ -251,7 +251,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 						$results = wp_parse_url( $link['attributes']['href'] ) ?? '';
 						parse_str( $results['query'], $query_vars );
 
-						if ( $link['attributes']['rel'] === 'last' ) {
+						if ( 'last' === $link['attributes']['rel'] ) {
 							$has_more = true;
 						}
 					}
@@ -668,8 +668,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_entry_author description]
 		 *
-		 * @param  [type] $entry [description]
-		 * @return [type]        [description]
+		 * @param  array $entry Entry.
 		 */
 		public function get_entry_author( $entry ) {
 			if ( ! empty( $entry ) ) {
@@ -680,8 +679,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_entry_content description]
 		 *
-		 * @param  [type] $entry [description]
-		 * @return [type]        [description]
+		 * @param  array $entry Entry.
 		 */
 		public function get_entry_content( $entry ) {
 			if ( ! empty( $entry ) ) {
@@ -692,8 +690,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_entry_id description]
 		 *
-		 * @param  [type] $entry [description]
-		 * @return [type]        [description]
+		 * @param  array $entry Entry.
 		 */
 		public function get_entry_id( $entry ) {
 			if ( ! empty( $entry ) ) {
@@ -705,8 +702,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_entry_title description]
 		 *
-		 * @param  [type] $entry [description]
-		 * @return [type]        [description]
+		 * @param  array $entry Entry.
 		 */
 		public function get_entry_title( $entry ) {
 			if ( ! empty( $entry ) ) {
@@ -717,8 +713,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_entry_updated description]
 		 *
-		 * @param  [type] $entry [description]
-		 * @return [type]        [description]
+		 * @param  array $entry Entry.
 		 */
 		public function get_entry_updated( $entry ) {
 			if ( ! empty( $entry ) ) {
@@ -729,8 +724,7 @@ if ( ! class_exists( 'SageAPI' ) ) {
 		/**
 		 * [get_entry_http_status description]
 		 *
-		 * @param  [type] $entry [description]
-		 * @return [type]        [description]
+		 * @param  array $entry Entry.
 		 */
 		public function get_entry_http_status( $entry ) {
 			if ( ! empty( $entry ) ) {
@@ -772,7 +766,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 									'author'  => $this->get_entry_author( $entry ) ?? '',
 									'status'  => $this->get_entry_http_status( $entry ) ?? '',
 									'updated' => $this->get_entry_updated( $entry ) ?? '',
-									// 'html'    => $this->get_entry_content( $entry) ?? '',
 									'data'    => array_values( $entry_payload )[0] ?? '',
 								) ?? array();
 					}
@@ -788,7 +781,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 							'author'  => $this->get_entry_author( $parsed_xml ) ?? '',
 							'status'  => $this->get_http_status( $parsed_xml ) ?? '',
 							'updated' => $this->get_updated( $parsed_xml ) ?? '',
-							// 'html'    => $this->get_content( $parsed_xml['entry'] ) ?? '',
 							'data'    => array_values( $entry_payload )[0] ?? '',
 						) ?? array();
 
