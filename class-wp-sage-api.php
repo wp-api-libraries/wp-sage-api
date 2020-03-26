@@ -22,6 +22,9 @@ defined( 'ABSPATH' ) || exit;
 // Require Autoloader.
 // require_once trailingslashit( dirname( __FILE__ ) ) . 'autoloader.php';
 
+
+include_once 'src/class-sage-items.php';
+
 /* Check if class exists. */
 if ( ! class_exists( 'SageAPI' ) ) {
 
@@ -86,7 +89,6 @@ if ( ! class_exists( 'SageAPI' ) ) {
 			static::$username     = $username;
 			static::$password     = $password;
 			static::$company_code = $company_code;
-
 			static::$base_uri = $base_uri . '/' . $company_code . '/';
 
 		}
