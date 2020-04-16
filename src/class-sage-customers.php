@@ -61,7 +61,7 @@ class Sage_Customers extends SageAPI {
 	 * @param  array $args [description]
 	 * @return [type]       [description]
 	 */
-	public function create_customer( $args = array(), $format = '' ) {
+	public function create_customer( $args = array() ) {
 
 		$customer_no             = '00';
 		$salesperson_division_no = '00';
@@ -88,7 +88,7 @@ class Sage_Customers extends SageAPI {
 				</sdata:payload>
 			</entry>';
 
-		$response = $this->build_request( 'AR_Customer', $args, 'POST' )->fetch( array( 'format' => $format ) );
+		$response = $this->build_request( 'AR_Customer', $args, 'POST' )->fetch();
 
 		return $response;
 	}
